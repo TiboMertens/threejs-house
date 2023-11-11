@@ -21,21 +21,21 @@ const frontWall = new THREE.Group();
 
 // Create a wall
 const FrontLeftGeometry = new THREE.BoxGeometry(2, 3, 0.1);
-const FrontLeftMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+const FrontLeftMaterial = new THREE.MeshBasicMaterial({ color: 0xfeeedb });
 const FrontLeft = new THREE.Mesh(FrontLeftGeometry, FrontLeftMaterial);
 FrontLeft.position.x = -1.5;
 frontWall.add(FrontLeft);
 
 // Create a wall
 const FrontRightGeometry = new THREE.BoxGeometry(2, 3, 0.1);
-const FrontRightMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+const FrontRightMaterial = new THREE.MeshBasicMaterial({ color: 0xfeeedb });
 const FrontRight = new THREE.Mesh(FrontRightGeometry, FrontRightMaterial);
 FrontRight.position.x = 1.5;
 frontWall.add(FrontRight);
 
 // Create a wall
 const FrontUpGeometry = new THREE.BoxGeometry(1, 1, 0.1);
-const FrontUpMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+const FrontUpMaterial = new THREE.MeshBasicMaterial({ color: 0xfeeedb });
 const FrontUp = new THREE.Mesh(FrontUpGeometry, FrontUpMaterial);
 FrontUp.position.x = 0;
 FrontUp.position.y = 1;
@@ -46,7 +46,7 @@ scene.add(frontWall);
 
 // Create the left wall
 const LeftWallGeometry = new THREE.BoxGeometry(0.1, 3, 5);
-const LeftWallMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+const LeftWallMaterial = new THREE.MeshBasicMaterial({ color: 0xfeeedb });
 const LeftWall = new THREE.Mesh(LeftWallGeometry, LeftWallMaterial);
 LeftWall.position.x = -2.5;
 LeftWall.position.z = -2.5;
@@ -54,7 +54,7 @@ scene.add(LeftWall);
 
 // Create the right wall
 const RightWallGeometry = new THREE.BoxGeometry(0.1, 3, 5);
-const RightWallMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+const RightWallMaterial = new THREE.MeshBasicMaterial({ color: 0xfeeedb });
 const RightWall = new THREE.Mesh(RightWallGeometry, RightWallMaterial);
 RightWall.position.x = 2.5;
 RightWall.position.z = -2.5;
@@ -62,7 +62,7 @@ scene.add(RightWall);
 
 // Create the back wall
 const BackWallGeometry = new THREE.BoxGeometry(5, 3, 0.1);
-const BackWallMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+const BackWallMaterial = new THREE.MeshBasicMaterial({ color: 0xfeeedb });
 const BackWall = new THREE.Mesh(BackWallGeometry, BackWallMaterial);
 BackWall.position.z = -5;
 scene.add(BackWall);
@@ -95,7 +95,7 @@ Grass.position.z = -2.5;
 scene.add(Grass);
 
 // Position the camera
-camera.position.z = 10;
+camera.position.z = 5;
 
 function animate() {
 	requestAnimationFrame( animate );
