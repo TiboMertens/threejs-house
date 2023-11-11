@@ -52,6 +52,14 @@ LeftWall.position.x = -2.5;
 LeftWall.position.z = -2.5;
 scene.add(LeftWall);
 
+// Create the right wall
+const RightWallGeometry = new THREE.BoxGeometry(0.1, 3, 5);
+const RightWallMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+const RightWall = new THREE.Mesh(RightWallGeometry, RightWallMaterial);
+RightWall.position.x = 2.5;
+RightWall.position.z = -2.5;
+scene.add(RightWall);
+
 // Position the camera
 camera.position.z = 5;
 
