@@ -1,22 +1,27 @@
-//import css
+// import css
 import "./style.css";
 
-import * as THREE from 'three';
+import * as THREE from "three";
 
-//import orbit controls
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+// import orbit controls
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-//add orbit controls
-const controls = new OrbitControls( camera, renderer.domElement );
+// add orbit controls
+const controls = new OrbitControls(camera, renderer.domElement);
 
-//add frontWall group
+// add frontWall group
 const frontWall = new THREE.Group();
 
 // Create a wall
@@ -94,13 +99,74 @@ Grass.position.y = -1.5;
 Grass.position.z = -2.5;
 scene.add(Grass);
 
+let doorGeometry = new THREE.BoxGeometry(1, 2, 0.1);
+let doorMaterial = new THREE.MeshBasicMaterial({ color: 0x5d2906 });
+let door = new THREE.Mesh(doorGeometry, doorMaterial);
+door.position.y = -0.5;
+scene.add(door);
+// Directional light
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+directionalLight.position.set(5, 5, 5); // Adjust the position based on your scene
+scene.add(directionalLight);
+
+// Ambient light
+const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+scene.add(ambientLight);
+
+let raycaster = new THREE.Raycaster();
+let mouse = new THREE.Vector2();
+let doorState = "closed"; // Initial state
+
+function onClick(event) {
+  // calculate mouse position in normalized device coordinates
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+  // update the picking ray with the camera and mouse position
+  raycaster.setFromCamera(mouse, camera);
+
+  // calculate objects intersecting the picking ray
+  let intersects = raycaster.intersectObjects(scene.children);
+
+  for (let i = 0; i < intersects.length; i++) {
+    if (intersects[i].object === door) {
+      // Toggle the door state
+      if (doorState === "closed") {
+        // Rotate the door by 90 degrees
+        door.rotation.y += Math.PI / 2;
+
+        // Move the door 2 units to the left
+        door.position.x += 0.5;
+
+        door.position.z = 0.5;
+
+        doorState = "open";
+      } else {
+        // Rotate the door back by 90 degrees
+        door.rotation.y -= Math.PI / 2;
+
+        // Move the door 2 units to the right
+        door.position.x -= 0.5;
+
+        door.position.z = 0;
+
+        doorState = "closed";
+      }
+    }
+  }
+}
+
+window.addEventListener("click", onClick);
+
 // Position the camera
 camera.position.z = 5;
 
 function animate() {
-	requestAnimationFrame( animate );
+  requestAnimationFrame(animate);
 
-	renderer.render( scene, camera );
+  controls.update(); // Update controls for orbiting
+
+  renderer.render(scene, camera);
 }
 
 animate();
