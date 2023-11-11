@@ -67,6 +67,15 @@ const BackWall = new THREE.Mesh(BackWallGeometry, BackWallMaterial);
 BackWall.position.z = -5;
 scene.add(BackWall);
 
+//create floor of the house using a plane
+const FloorGeometry = new THREE.PlaneGeometry(5, 5);
+const FloorMaterial = new THREE.MeshBasicMaterial({ color: 25516579 });
+const Floor = new THREE.Mesh(FloorGeometry, FloorMaterial);
+Floor.rotation.x = -Math.PI / 2;
+Floor.position.y = -1.5;
+Floor.position.z = -2.5;
+scene.add(Floor);
+
 // Position the camera
 camera.position.z = 5;
 
