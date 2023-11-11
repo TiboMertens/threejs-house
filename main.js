@@ -76,8 +76,17 @@ Floor.position.y = -1.5;
 Floor.position.z = -2.5;
 scene.add(Floor);
 
+//create a pyramid roof for the house
+const RoofGeometry = new THREE.ConeGeometry(3.6, 2.5, 4);
+const RoofMaterial = new THREE.MeshBasicMaterial({ color: 0xA44A4A });
+const Roof = new THREE.Mesh(RoofGeometry, RoofMaterial);
+Roof.rotation.y = Math.PI / 4;
+Roof.position.y = 2.75;
+Roof.position.z = -2.5;
+scene.add(Roof);
+
 // Position the camera
-camera.position.z = 5;
+camera.position.z = 10;
 
 function animate() {
 	requestAnimationFrame( animate );
