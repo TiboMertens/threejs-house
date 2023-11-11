@@ -60,6 +60,13 @@ RightWall.position.x = 2.5;
 RightWall.position.z = -2.5;
 scene.add(RightWall);
 
+// Create the back wall
+const BackWallGeometry = new THREE.BoxGeometry(5, 3, 0.1);
+const BackWallMaterial = new THREE.MeshBasicMaterial({ color: 0x888888 });
+const BackWall = new THREE.Mesh(BackWallGeometry, BackWallMaterial);
+BackWall.position.z = -5;
+scene.add(BackWall);
+
 // Position the camera
 camera.position.z = 5;
 
